@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier | Online Shopping</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="view-auth" class="auth-screen">
+        <div class="auth-card">
+            <h1 class="logo">Online Shopping<span>.</span></h1>
+            <h2 style="margin-bottom: 20px; font-weight: 400;">Create Account</h2>
+            <div class="field">
+                <label>Full Name</label>
+                <input type="text" placeholder="Your Name" class="lux-input">
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <input type="email" placeholder="example@gmail.com" class="lux-input">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" placeholder="••••••••" class="lux-input">
+            </div>
+            <button class="btn-gold" onclick="enterApp()">Sign In</button>
+        </div>
+    </div>
+<div id="main-app" class="hidden">
+        <header class="header">
+            <div class="nav-container">
+                <div class="logo" onclick="showView('home')">Online<span>Shopping</span></div>
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="global-search" oninput="executeSearch()" placeholder="Search collection...">
+                    <i class="fa-solid fa-microphone mic-icon" onclick="startVoiceSearch()" title="Voice Search"></i>
+                </div>
+                <div class="user-actions">
+                    <button onclick="showView('home')"><i class="fa-solid fa-house"></i></button>
+                    <button onclick="showView('wishlist')">
+                        <i class="fa-solid fa-heart"></i>
+                        <span id="w-badge" class="dot">0</span>
+                    </button>
+                    <button onclick="showView('cart')">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span id="c-badge" class="dot">0</span>
+                    </button>
+                    <div class="account-dropdown">
+                        <button class="account-trigger"><i class="fa-solid fa-circle-user"></i></button>
+                        <div class="dropdown-content">
+                            <div class="dropdown-header"><strong>User Details</strong></div>
+                            <hr>
+                            <a onclick="showView('profile')"><i class="fa-solid fa-building-columns"></i> Bank & UPI</a>
+                            <a onclick="showView('profile')"><i class="fa-solid fa-rotate-left"></i> Refunds</a>
+                            <a onclick="showView('wishlist')"><i class="fa-solid fa-heart"></i> Wishlist</a>
+                            <a onclick="shareSite()"><i class="fa-solid fa-share-nodes"></i> Shared Products</a>
+                            <a onclick="showView('profile')"><i class="fa-solid fa-gear"></i> Settings</a>
+                            <a onclick="changeLanguage()"><i class="fa-solid fa-language"></i> Change Language</a>
+                            <hr>
+                            <a onclick="rateApp()" class="gold-text"><i class="fa-solid fa-star"></i> Rate Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <nav class="cat-strip">
+                <span class="cat-link active" onclick="filterBy('All', this)">All</span>
+                <span class="cat-link active" onclick="filterBy('Men', this)">Men</span>
+                <span class="cat-link active" onclick="filterBy('Women', this)">Women</span>
+                <span class="cat-link" onclick="filterBy('Fashion', this)">Fashion</span>
+                <span class="cat-link" onclick="filterBy('Tech', this)">Tech</span>
+                <span class="cat-link" onclick="filterBy('Home', this)">Home</span>
+                <span class="cat-link" onclick="filterBy('Beauty', this)">Beauty</span>
+            </nav>
+        </header>
+<main class="content-area">
+            <section id="view-home" class="view">
+                <div id="plp-grid" class="product-grid"></div>
+            </section>
+  <section id="view-cart" class="view hidden">
+    <div class="checkout-container">
+        
+        <div class="order-review">
+            <h2 class="section-title">Your Selected items</h2>
+            <div id="cart-items-list" class="cart-items-stack">
+                </div>
+        </div>
+
+        <div class="payment-panel">
+            <div class="payment-card">
+                <h3>Checkout Summary</h3>
+                <div class="summary-line">
+                    <span>Subtotal</span>
+                    <span id="sub-amt">₹0</span>
+                </div>
+                <div class="summary-line">
+                    <span>Shipping</span>
+                    <span class="gold-text">Complimentary</span>
+                </div>
+                <hr>
+                <div class="summary-line total">
+                    <span>Total Amount</span>
+                    <span id="total-amt">₹0</span>
+                </div>
+
+                <div class="payment-methods">
+                    <p class="label">Select Payment Method</p>
+                    <div class="method-box active" onclick="setPayment(this, 'UPI')">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <span>UPI / QR Code</span>
+                    </div>
+                    <div class="method-box" onclick="setPayment(this, 'Card')">
+                        <i class="fa-solid fa-credit-card"></i>
+                        <span>Debit / Credit Card</span>
+                    </div>
+                    <div class="method-box" onclick="setPayment(this, 'COD')">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Cash on Delivery</span>
+                    </div>
+                </div>
+
+                <button class="btn-pay" id="main-pay-btn" onclick="executePayment()">
+                    Place Order
+                </button>
+                <p class="security-tag"><i class="fa-solid fa-shield-halved"></i> 256-bit Secure Encryption</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+        <section id="view-success" class="view hidden text-center">
+            <div class="success-screen">
+                <i class="fa-solid fa-check-circle gold"></i>
+                <h1>Order Confirmed</h1>
+                <button class="btn-outline" onclick="showView('home')">Back to Collection</button>
+            </div>
+        </section>
+    </div>
+<section id="view-wishlist" class="view hidden">
+                <h2 class="section-title">My Wishlist</h2>
+                <div id="wish-grid" class="product-grid"></div>
+            </section>
+<section id="view-pdp" class="view hidden">
+                <div class="pdp-container">
+                    <div class="pdp-visual" onmousemove="zoomIn(event)" onmouseleave="zoomOut()">
+                        <img id="pdp-img" src="" alt="">
+                    </div>
+                    <div class="pdp-content">
+                        <h1 id="pdp-name"></h1>
+                        <div id="pdp-stars" class="stars-row" style="margin-bottom: 10px;"></div>
+                        <h2 id="pdp-price" class="gold" style="margin-bottom: 20px;"></h2>
+                        <p class="desc">The pinnacle of artisanal craftsmanship. Designed for the modern connoisseur.</p>
+                        <button class="btn-gold" onclick="addToBag()">Add to Shopping Bag</button>
+                        <button class="btn-outline" onclick="addToWish()">Add to Wishlist</button>
+                    </div>
+                </div>
+            </section>
+            <section id="view-profile" class="view hidden info-page">
+                <div class="lux-card">
+                    <h2 class="gold-heading">Account & Financials</h2>
+                    <div class="profile-group">
+                        <h3>Bank & UPI Details</h3>
+                        <input type="text" placeholder="Account Holder Name" class="lux-input">
+                        <input type="text" placeholder="Bank Name & IFSC" class="lux-input">
+                        <input type="text" placeholder="UPI ID (e.g. user@upi)" class="lux-input">
+                    </div>
+                    <div class="profile-group">
+                        <h3>Refund Status</h3>
+                        <p style="font-size: 13px; color: #888;">No pending refunds found.</p>
+                    </div>
+                    <button class="btn-gold" onclick="alert('Profile Updated Successfully')">Save Settings</button>
+                </div>
+            </section>
+             <section id="view-about" class="view hidden info-section">
+               <div class="lux-card"><h2>🧾Who We Are</h2><p>We are a comprehensive online shopping web application developed to simplify the way people shop in the digital world. Our platform brings together a wide variety of products, including fashion, electronics, home essentials, and more, allowing users to browse and purchase items conveniently from the comfort of their homes.
+                                 Our primary goal is to create a seamless and user-friendly shopping experience. We understand that modern consumers value convenience, speed, and reliability. Therefore, our application is designed with an intuitive interface that makes it easy for users to search for products, compare prices, read detailed descriptions, and make informed purchasing decisions.
+                                 We are committed to offering high-quality products at competitive prices. By connecting customers with trusted sellers and maintaining clear product information, we ensure transparency and trust in every transaction. Our platform also emphasizes secure payment methods and protects user data to provide a safe shopping environment.
+                                 In addition, we focus on delivering excellent customer service. Features such as order tracking, easy returns, and responsive support help us build long-term relationships with our users. We aim to not just meet customer expectations, but to exceed them by continuously improving our services based on feedback and technological advancements.
+                                Our web application is built using modern front-end technologies to ensure fast performance, responsiveness across devices, and an engaging user experience. Whether accessed on a desktop, tablet, or mobile device, the platform provides consistent functionality and smooth navigation.
+                                Ultimately, we strive to become a reliable and preferred destination for online shopping by combining innovation, quality, and customer satisfaction in everything we do.</p></div>
+            </section>
+            <section id="view-join" class="view hidden info-page">
+                <div class="lux-card"><h2>🤝Join Us</h2><p>We warmly invite you to become a part of our dynamic and growing online shopping platform, where innovation meets convenience and customer satisfaction is our top priority. Our web application is more than just a place to buy and sell products—it is a complete digital marketplace designed to connect people, businesses, and opportunities in one seamless environment.
+                               As a customer, joining our platform opens the door to a wide variety of products across multiple categories such as fashion, electronics, home essentials, and lifestyle items. You can enjoy a smooth and user-friendly shopping experience with features like easy navigation, advanced search options, detailed product descriptions, customer reviews, and secure checkout systems. Our goal is to ensure that every customer finds exactly what they are looking for quickly and efficiently.
+                               By becoming a registered user, you gain access to personalized features such as saved addresses, order tracking, wishlist management, and exclusive deals tailored to your preferences. We continuously update our platform with new features and improvements to enhance your overall shopping experience. Whether you are shopping for daily needs or special occasions, our application is designed to meet all your requirements in one place.
+                               For sellers and entrepreneurs, our platform provides an excellent opportunity to grow and expand your business in the digital world. By joining us as a seller, you can showcase your products to a large and diverse audience without the limitations of a physical store. Our system allows you to manage your product listings, update inventory, track orders, and analyze sales performance with ease. We support our sellers by providing a reliable platform, marketing opportunities, and tools to help them succeed in a competitive online marketplace.
+                               We strongly believe in building a trusted and transparent ecosystem where both customers and sellers can interact with confidence. Our platform ensures secure transactions, protects user data, and maintains high standards of quality and service. We are committed to creating a safe environment where users feel comfortable engaging in online shopping activities.
+                               In addition to customers and sellers, we also welcome partners, developers, and collaborators who are interested in contributing to the growth and innovation of our platform. Together, we can build a stronger and more efficient online shopping experience that adapts to the changing needs of users.
+                               Our vision is to create a community-driven platform that evolves with technology and user expectations. By joining us, you become a part of this journey toward a smarter, faster, and more reliable digital shopping ecosystem. We value every user and strive to provide continuous support, regular updates, and a platform that you can trust.
+                               Join us today and take the next step into the future of online shopping—where convenience, quality, and opportunity come together to create an exceptional experience for everyone.</p></div>
+            </section>
+            <section id="view-tc" class="view hidden info-page">
+                <div class="lux-card"><h2>📜Terms & Conditions</h2><p>Welcome to our Online Shopping Web Application. By accessing or using our platform, you agree to comply with and be bound by the following terms and conditions. Please read them carefully before using our services.1. Acceptance of Terms
+                                By using this website, you confirm that you agree to these Terms & Conditions. If you do not agree, please do not use our platform.
+                                2. User AccountUsers may be required to create an account to access certain features. You are responsible for maintaining the confidentiality of your account details and for all activities under your account.
+                                3. Product InformationWe strive to provide accurate product descriptions, images, and pricing. However, we do not guarantee that all information is error-free. Prices and availability are subject to change without notice.
+                                4. Orders and PaymentsAll orders placed through our platform are subject to acceptance and availability. We reserve the right to cancel or refuse any order. Payments must be completed through the available payment methods provided on the website.
+                                5. Shipping and DeliveryDelivery times may vary depending on location and product availability. While we aim to deliver products within the estimated time, delays may occur due to unforeseen circumstances.
+                                6. Returns and RefundsCustomers may request returns or refunds based on our return policy. Products must meet the specified conditions for returns, such as being unused and in original packaging.
+                                7. User ConductUsers agree not to misuse the platform, engage in fraudulent activities, or violate any applicable laws while using our services.
+                                8. Privacy and SecurityWe are committed to protecting user data. Personal information is handled according to our privacy policy and secured using appropriate technologies.
+                                9. Intellectual PropertyAll content on this website, including text, images, logos, and design, is the property of our platform and may not be copied or used without permission.
+                                10. Limitation of LiabilityWe are not responsible for any indirect or incidental damages arising from the use of our platform. Users access the website at their own risk.
+                                11. Changes to TermsWe reserve the right to update or modify these Terms & Conditions at any time. Users are encouraged to review this page regularly.
+                                12. Contact InformationIf you have any questions about these Terms & Conditions, please contact our support team through the website.</p></div>
+               </section>
+            <footer class="footer">
+            <div class="footer-links">
+                <span onclick="showView('about')">Who We Are</span>
+                <span onclick="showView('join')">Join Us</span>
+                <span onclick="showView('tc')">T&C</span>
+            </div>
+            <div class="footer-copy">© 2024 Online Shopping Atelier</div>
+        </footer>
+    </div>
+<div id="successView" class="success-screen hidden">
+        <div class="success-wrap">
+            <i class="fa-solid fa-circle-check"></i>
+            <h2>Order Placed!</h2>
+            <p>Your luxury pieces are being prepared.</p>
+            <button class="btn-gold" onclick="location.reload()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

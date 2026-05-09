@@ -1,0 +1,132 @@
+:root { 
+    --gold: #b39359; 
+    --black: #111; 
+    --white: #fff; 
+    --grey: #f9f9f9; 
+    --border: #ececec; 
+    --gold-soft: #f4eee0; 
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background: var(--white); color: var(--black); overflow-x: hidden; }
+
+/* --- Visibility & Animations --- */
+.hidden { display: none !important; }
+.view { animation: fadeIn 0.4s ease; min-height: 80vh; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Authentication */
+.auth-screen { height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--grey); }
+.auth-card { background: #fff; padding: 50px; width: 400px; text-align: center; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.logo { font-family: 'Playfair Display', serif; font-size: 28px; margin-bottom: 20px; }
+.logo span { color: var(--gold); }
+
+.field { text-align: left; margin-bottom: 15px; }
+.field label { font-size: 11px; text-transform: uppercase; color: #888; display: block; margin-bottom: 5px; }
+.lux-input { width: 100%; padding: 12px; border: 1px solid var(--border); background: var(--grey); outline: none; }
+
+/* Buttons */
+.btn-gold { width: 100%; padding: 15px; background: var(--gold); color: white; border: none; cursor: pointer; font-weight: 400; }
+.btn-black { padding: 15px 30px; background: var(--black); color: white; border: none; cursor: pointer; }
+.btn-outline { width: 100%; padding: 15px; background: white; border: 1px solid var(--black); cursor: pointer; font-weight: 400;}
+
+/* --- User Actions & Icons --- */
+.user-actions { display: flex; gap: 25px; align-items: center; }
+.user-actions button { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--black); position: relative; transition: 0.2s; }
+.user-actions button:hover { color: var(--gold); }
+.dot { position: absolute; top: -8px; right: -8px; background: var(--gold); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 10px; font-weight: 700; }
+
+
+/* Header & Navigation */
+.header { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; }
+.nav-container { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; }
+.search-bar { position: relative; width: 40%; display: flex; align-items: center; }
+.search-bar input { width: 100%; padding: 12px 45px; border: 1px solid var(--border); background: var(--grey); border-radius: 25px; outline: none; font-size: 14px; }
+.search-bar .fa-magnifying-glass { position: absolute; left: 18px; color: #aaa; }
+.mic-icon { position: absolute; right: 18px; color: var(--gold); cursor: pointer; transition: 0.2s; font-size: 16px; }
+.dot { position: absolute; top: -5px; right: -5px; background: var(--gold); color: white; font-size: 10px; padding: 2px 5px; border-radius: 50%; }
+
+/* --- Account Dropdown --- */
+.account-dropdown { position: relative; }
+.dropdown-content { display: none; position: absolute; right: 0; background: white; min-width: 220px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border: 1px solid var(--border); z-index: 1001; padding: 10px 0; }
+.account-dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a { display: block; padding: 12px 20px; font-size: 13px; text-decoration: none; color: #444; cursor: pointer; }
+.dropdown-content a:hover { background: var(--gold-soft); color: var(--gold); }
+.dropdown-header { padding: 10px 20px; font-weight: 700; color: var(--gold); font-size: 12px; text-transform: uppercase; }
+
+
+/* --- Category Strip --- */
+.cat-strip { display: flex; justify-content: center; gap: 30px; padding: 15px; border-top: 1px solid var(--border);background: #fff;}
+.cat-link { font-size: 11px; text-transform: uppercase; cursor: pointer; color: #888; font-weight: 600; letter-spacing: 1px; border-bottom: 2px solid transparent; padding-bottom: 5px; transition: 0.3s; }
+.cat-link.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+
+/* Grid */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; padding: 40px 5%; }
+.card { cursor: pointer; }
+.card img { width: 100%; height: 350px; object-fit: cover; background: var(--grey); }
+
+/* PDP & Cart */
+.pdp-container { display: flex; gap: 50px; padding: 50px 5%; }
+.pdp-visual { flex: 1; height: 500px; overflow: hidden; }
+.pdp-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Checkout & Cart --- */
+.checkout-container { display: flex; gap: 40px; padding: 40px 5%; }
+.payment-panel { flex: 1; background: var(--grey); padding: 30px; height: fit-content; }
+.summary-line { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.total { font-weight: 700; font-size: 1.2rem; border-top: 1px solid #ddd; padding-top: 10px; }
+
+.success-screen { text-align: center; padding: 100px; }
+.success-screen i { font-size: 4rem; color: var(--gold); margin-bottom: 20px; }
+
+/* --- Method Selector --- */
+.payment-methods { margin-top: 30px; }
+.method-box { display: flex; align-items: center; gap: 15px; padding: 18px; border: 1px solid var(--border); margin-bottom: 12px; cursor: pointer; transition: 0.3s; border-radius: 4px; }
+.method-box.active
+
+/* Payment Card Styling */
+.payment-card { background: #b39359; border: 1px solid #eee;  padding: 30px;  box-shadow: 0 10px 30pxrgba(0,0,0,0.03); }
+.summary-line {  display: flex;   justify-content: space-between; margin-bottom: 12px; font-size: 14px; }
+.summary-line.total {  font-size: 20px;   font-weight: 700;  margin-top: 15px;  padding-top: 15px; }
+
+
+/* Method Selector */
+.payment-methods { margin-top: 30px; }
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 15px; }
+.method-box {  display: flex; align-items: center; gap: 15px;  padding: 15px; border: 1px solid #eee; margin-bottom: 10px; cursor: pointer; transition: 0.3s;}
+.method-box i { font-size: 18px; color: #888; }
+.method-box span { font-size: 13px; font-weight: 600; }
+.method-box.active { border-color: #000; background: #000;  color: #fff; }
+.method-box.active i { color: #b39359; }
+
+
+/* Payment Button */
+.btn-pay { width: 100%; padding: 18px; background: #b39359;  color: #fff;  border: none; font-weight:700; text-transform: uppercase; cursor: pointer;  margin-top: 20px;letter-spacing: 1px; }
+.security-tag {  text-align: center; font-size: 10px; color: #bbb; margin-top: 15px; text-transform:uppercase; }
+@media (max-width: 900px) {
+.checkout-container { flex-direction: column; }
+ .payment-panel { position: static; }
+}
+
+
+
+/* Buttons */
+.lux-input { width: 100%; padding: 15px; margin-bottom: 15px; border: 1px solid var(--border); }
+.btn-gold { width: 100%; padding: 15px; background: var(--gold); color: white; border: none; cursor: pointer; font-weight: 600; }
+.btn-outline { padding: 15px 30px; background: transparent; border: 1px solid var(--black); cursor: pointer; }
+
+
+/* Modal */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 100; }
+.modal-content { background: #fff; padding: 40px; width: 90%; max-width: 500px; }
+.scroll-box { height: 200px; overflow-y: auto; margin: 20px 0; font-size: 13px; line-height: 1.6; border-top: 1px solid #eee; padding-top: 10px; }
+.gold { color: var(--gold); font-size: 50px; margin-bottom: 20px; }
+
+
+/* Footer */
+.footer { border-top: 1px solid var(--border); padding: 40px 5%; text-align: center; margin-top: 60px; }
+.footer-links { display: flex; justify-content: center; gap: 40px; margin-bottom: 20px; }
+.footer-links span { font-size: 12px; color: #888; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; }
+.footer-links span:hover { color: var(--gold); }
+.footer-copy { font-size: 11px; color: #ccc; }
+
